@@ -73,11 +73,22 @@ while merged_list:
   print(merged_list.val, end=" ")
   merged_list = merged_list.next
   
+## 3. Add Two numbers
+carry = 0
 
-      
-      
-      
-    
+while l1 or l2 or carry:
+  val1 = (l1.val if l1 else 0)
+  val2 = (l2.val if l2 else 0)
+  carry, out = divmod(val1 + val2 + carry, 10)
+  
+  print(l1.val, l2.val, carry, out)
+  
+  result_tail.next = ListNode(out)
+  result_tail = result_tail.next
+  
+
+  
+
 
 
 
