@@ -49,21 +49,19 @@ def merge_two_list(l1, l2):
 print("hi")
       
 # Sample Data
-# List 1: 1 -> 2 -> 4
-l1 = ListNode(1)
-l1.next = ListNode(2)
-l1.next.next = ListNode(4)
+# List 1: 2 -> 4 -> 3
+l1 = ListNode(2)
+l1.next = ListNode(4)
+l1.next.next = ListNode(3)
 
 print(l1.val)
 print(l1.next.val)
 print(l1.next.next.val)
 
-# List 2: 1 -> 3 -> 4
-l2 = ListNode(1)
-l2.next = ListNode(3)
+# List 2: 5 -> 6 -> 4
+l2 = ListNode(5)
+l2.next = ListNode(6)
 l2.next.next = ListNode(4)
-l2.next.next.next = ListNode(9)
-l2.next.next.next.next = ListNode(8)
 
 # merge two list
 merged_list = merge_two_list(l1, l2)
@@ -74,21 +72,41 @@ while merged_list:
   merged_list = merged_list.next
   
 ## 3. Add Two numbers
-carry = 0
 
-while l1 or l2 or carry:
-  val1 = (l1.val if l1 else 0)
-  val2 = (l2.val if l2 else 0)
-  carry, out = divmod(val1 + val2 + carry, 10)
-  
-  print(l1.val, l2.val, carry, out)
-  
-  result_tail.next = ListNode(out)
-  result_tail = result_tail.next
-  
-
-  
+# If there's two node, first add two number and if over ten, give to another node the ten and remain is in the result node. 
+# Input: l1 = [2,4,3], l2 = [5,6,4]
+# Output: [7,0,8]
+# Explanation: 342 + 465 = 807.
 
 
+def addTwoNumbers(l1, l2):
+    """
+    :type l1: ListNode
+    :type l2: ListNode
+    :rtype: ListNode
+    """
+    
+    result = ListNode(0)
+    result_tail = result
+    carry = 0
+            
+    while l1 or l2 or carry:            
+        val1  = (l1.val if l1 else 0)
+        val2  = (l2.val if l2 else 0)
+        carry, out = divmod(val1+val2 + carry, 10)    
+                  
+        result_tail.next = ListNode(out)
+        result_tail = result_tail.next                      
+        
+        l1 = (l1.next if l1 else None)
+        l2 = (l2.next if l2 else None)
+           
+    return result.next
 
+
+solution = addTwoNumbers(l1, l2)
+
+solution.val 
+solution.next.val 
+solution.next.next.val
 
